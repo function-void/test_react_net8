@@ -1,4 +1,5 @@
-﻿using UserManagementApp.Application.Interfaces;
+﻿using UserManagementApp.Application.Features.Users.Specifications;
+using UserManagementApp.Application.Interfaces;
 using UserManagementApp.Application.Services;
 using UserManagementApp.Domain.Models;
 
@@ -11,7 +12,7 @@ public class DeleteUserCommandHandler(IUnitOfWork unitOfWork, IUserService userS
 
     public async Task<Result> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetByIdAsync(request.Id, cancellationToken);
+        var user = await _userService.GetAsync(new GetUserByIdSpecification(request.Id), cancellationToken);
 
         if (user is null)
             return Error.NotFound;

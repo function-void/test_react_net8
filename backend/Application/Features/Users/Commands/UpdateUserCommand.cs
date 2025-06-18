@@ -21,10 +21,5 @@ public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
         RuleFor(x => x.FullName)
             .NotEmpty()
             .MaximumLength(512);
-
-        RuleFor(x => x.Role)
-            .NotEmpty()
-            .MaximumLength(256)
-            .Must(x => x == "Admin" || x == "Manager" || x == "User");
     }
 }
