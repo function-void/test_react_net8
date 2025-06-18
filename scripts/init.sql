@@ -1,1 +1,1 @@
-// init.sql - placeholder content
+CREATE DATABASE user_management;
