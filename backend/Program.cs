@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http.Features;
+using System.Diagnostics;
 using UserManagementApp.Application;
 using UserManagementApp.ExceptionHandler;
 using UserManagementApp.Infrastructure.DataAccess;
@@ -9,6 +11,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
+builder.Services.AddProblemDetails(
+            options =>
+            {
+                options.CustomizeProblemDetails = context =>
+                {
+                    Activity? activity = context.HttpContext.Features.Get<IHttpActivityFeature>()?.Activity;
+                    context.ProblemDetails.Detail = "No details";
+                    context.ProblemDetails.Instance = $"{context.HttpContext.Request.Method} {context.HttpContext.Request.Path}";
+                    context.ProblemDetails.Extensions.TryAdd("requestId", context.HttpContext.TraceIdentifier);
+                    context.ProblemDetails.Extensions.TryAdd("traceId", activity?.Id);
+                };
+            });
 
 builder.Services.AddConfigureOptions();
 builder.Services.AddConfiguredController();
@@ -24,6 +39,13 @@ app.UseExceptionHandler();
 app.UseStatusCodePages();
 app.UseRouting();
 app.MapControllers();
+
+app.UseSwagger();
+app.UseSwaggerUI(option =>
+{
+    option.EnableFilter();
+    option.DisplayRequestDuration();
+});
 
 app.MapGet("/", () => "User Management App is running!");
 
