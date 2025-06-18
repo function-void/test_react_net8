@@ -21,7 +21,6 @@ public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 
         RuleFor(x => x.Role)
             .NotEmpty()
-            .MaximumLength(256)
-            .Must(x => x == "Admin" || x == "Manager" || x == "User");
+            .MaximumLength(256);
     }
 }
