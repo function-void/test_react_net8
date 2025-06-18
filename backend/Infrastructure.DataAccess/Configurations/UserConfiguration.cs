@@ -14,8 +14,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(x => x.Role).HasMaxLength(256);
         builder.Property(x => x.Email).HasMaxLength(256);
 
-        builder.ToTable(t => t.HasCheckConstraint("CK_User_Role", "[Role] IN ('Admin', 'Manager', 'User')"));
-
         builder.Property(x => x.CreatedBy).HasMaxLength(36).IsRequired();
         builder.Property(x => x.DeletedBy).HasMaxLength(36);
         builder.Property(x => x.LastModifiedBy).HasMaxLength(36);
