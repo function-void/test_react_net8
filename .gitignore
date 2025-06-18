@@ -365,3 +365,6 @@ FodyWeavers.xsd
 backend/.vs/
 backend/obj/
 
+/backend/.vs/ProjectEvaluation/usermanagementapp.metadata.v9.bin
+/backend/.vs/ProjectEvaluation/usermanagementapp.projects.v9.bin
+/backend/.vs/ProjectEvaluation/usermanagementapp.strings.v9.bin
