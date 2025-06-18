@@ -361,4 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/src/Clothing.Store.Core.HostApp/Clothing.Store.Core.HostApp/.env
+
+backend/.vs/
+backend/obj/
+
