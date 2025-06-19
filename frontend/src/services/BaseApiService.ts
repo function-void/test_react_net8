@@ -3,7 +3,7 @@ import environment from "../helpers/environment";
 
 const axiosInstance = axios.create({
     baseURL: environment.apiUrl,
-    withCredentials: true,
+    // withCredentials: true,
     headers: { "Content-Type": "application/json" }
 });
 

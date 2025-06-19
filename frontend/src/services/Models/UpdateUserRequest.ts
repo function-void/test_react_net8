@@ -1,5 +1,5 @@
 export interface UpdateUserRequest {
-    Email: string;
-    Role: string;
-    FullName: string;
+    email: string;
+    role: string;
+    fullName: string;
 }

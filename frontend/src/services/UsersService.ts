@@ -8,7 +8,7 @@ export class UsersService extends BaseApiService {
     protected prefixUrl = "api/v1/users";
 
     getUsers(search: string | null, pageNumber: number, pageSize: number) {
-        return this.api.get<PaginatedList<User>>(`${this.prefixUrl}/${search}`, {params: {search, pageNumber, pageSize }})
+        return this.api.get<PaginatedList<User>>(`${this.prefixUrl}`, {params: {search, pageNumber, pageSize }})
     }
 
     createUser(request: CreateUserRequest) {
