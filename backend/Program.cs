@@ -25,6 +25,14 @@ builder.Services.AddProblemDetails(
                 };
             });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("dev", builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+});
+
 builder.Services.AddConfigureOptions();
 builder.Services.AddConfiguredController();
 builder.Services.AddApplicationServices(builder.Configuration);
@@ -35,6 +43,7 @@ var app = builder.Build();
 
 app.UseHsts();
 app.UseHttpsRedirection();
+app.UseCors("dev");
 app.UseExceptionHandler();
 app.UseStatusCodePages();
 app.UseRouting();
