@@ -1,1 +1,5 @@
-// api.ts - placeholder content
+import { UsersService } from "./UsersService";
+
+export const api = {
+    users: new UsersService(),
+}
